@@ -5,7 +5,6 @@ from __future__ import annotations
 import io
 import json
 import pathlib
-import sys
 
 import pytest
 
