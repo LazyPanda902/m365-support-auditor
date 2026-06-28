@@ -22,7 +22,7 @@ Findings are categorized by severity (INFO, LOW, MEDIUM, HIGH, CRITICAL) and can
 - Exports reports as text, JSON, or CSV.
 - Runs locally against exported data without requiring direct tenant access.
 - Includes tests and GitHub Actions CI for repeatable validation.
-\n## Installation
+## Installation
 
 Install from the package directory:
 
