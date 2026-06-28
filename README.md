@@ -1,5 +1,11 @@
 # m365-support-auditor
 
+<!-- portfolio-card -->
+<p align="center">
+  <img src="docs/assets/project-card.svg" alt="m365-support-auditor project card" width="100%" />
+</p>
+<!-- /portfolio-card -->
+
 A Python command-line tool to audit Microsoft 365 user accounts for security, compliance, and license management issues. Designed for Windows administrators managing Azure AD / Entra ID environments.
 
 ## Purpose
