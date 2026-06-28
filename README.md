@@ -12,7 +12,17 @@ A Python command-line tool to audit Microsoft 365 user accounts for security, co
 
 Findings are categorized by severity (INFO, LOW, MEDIUM, HIGH, CRITICAL) and can be exported as text, JSON, or CSV for further processing.
 
-## Installation
+
+
+## Features
+
+- Audits Microsoft 365 user records from JSON or CSV files.
+- Flags MFA, privileged-account, stale-account, group-membership, and license issues.
+- Categorizes findings by severity for support and admin review.
+- Exports reports as text, JSON, or CSV.
+- Runs locally against exported data without requiring direct tenant access.
+- Includes tests and GitHub Actions CI for repeatable validation.
+\n## Installation
 
 Install from the package directory:
 
