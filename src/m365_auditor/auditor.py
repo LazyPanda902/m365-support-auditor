@@ -19,7 +19,7 @@ class Severity(enum.Enum):
     HIGH = "HIGH"
     CRITICAL = "CRITICAL"
 
-    def __lt__(self, other: "Severity") -> bool:
+    def __lt__(self, other: Severity) -> bool:
         order = [s.value for s in Severity]
         return order.index(self.value) < order.index(other.value)
 
@@ -142,7 +142,7 @@ def _days_since(date_str: str) -> int | None:
     for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
         try:
             parsed = datetime.datetime.strptime(date_str, fmt)
-            delta = datetime.datetime.utcnow() - parsed
+            delta = datetime.datetime.now(datetime.UTC) - parsed.replace(tzinfo=datetime.UTC)
             return delta.days
         except ValueError:
             continue
@@ -352,7 +352,7 @@ class AuditEngine:
     # --- audit runner ---
 
     def run(self, users: list[dict[str, Any]]) -> AuditReport:
-        report = AuditReport(generated_at=datetime.datetime.utcnow())
+        report = AuditReport(generated_at=datetime.datetime.now(datetime.UTC))
         for user in users:
             for rule in self._rules:
                 report.findings.extend(rule(user))

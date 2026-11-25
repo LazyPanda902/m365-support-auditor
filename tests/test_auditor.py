@@ -13,12 +13,11 @@ from m365_auditor.auditor import (
     AuditReport,
     Finding,
     Severity,
-    _Rules,
     _days_since,
     _parse_bool,
+    _Rules,
 )
 from m365_auditor.cli import build_parser, main
-
 
 # ---------------------------------------------------------------------------
 # Helpers
