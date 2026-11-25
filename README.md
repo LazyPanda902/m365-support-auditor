@@ -6,15 +6,15 @@
 </p>
 <!-- /portfolio-card -->
 
-A Python command-line tool to audit Microsoft 365 user accounts for security, compliance, and license management issues. Designed for Windows administrators managing Azure AD / Entra ID environments.
+A local Python CLI for reviewing exported Microsoft 365 and Microsoft Entra ID user records. It flags account, MFA, privilege and license-related conditions for administrator review; it does not connect to a tenant.
 
 ## Purpose
 
 `m365-support-auditor` analyzes M365 user records and detects:
 
-- **Security violations** — MFA disabled on privileged accounts, non-expiring passwords for admins, accounts lacking admin-naming conventions
+- **Security review findings** — MFA disabled on privileged accounts, non-expiring passwords for admins, accounts lacking admin-naming conventions
 - **License issues** — disabled accounts holding active licenses, unrecognized license SKUs
-- **Compliance gaps** — stale accounts (no sign-in for 90+ days), users with no group memberships, accounts without security group assignments
+- **Account hygiene findings** — stale accounts (no sign-in for 90+ days), users with no group memberships, accounts without security group assignments
 
 Findings are categorized by severity (INFO, LOW, MEDIUM, HIGH, CRITICAL) and can be exported as text, JSON, or CSV for further processing.
 
@@ -36,13 +36,7 @@ Install from the package directory:
 pip install -e .
 ```
 
-Or install directly:
-
-```bash
-pip install m365-support-auditor
-```
-
-Requires Python 3.9+.
+Clone the repository first if needed. Requires Python 3.11 or later, as specified in `pyproject.toml`.
 
 ## Usage
 
@@ -72,7 +66,7 @@ Summary:
 
 [HIGH] SEC-002 — svc.backup@example.com
   Privileged account has non-expiring password.
-  Detail: Role: ExchangeAdmin. Consider enforcing password rotation.
+  Detail: Role: ExchangeAdmin. Review the account's authentication method and applicable policy.
 
 ...
 ```
@@ -198,6 +192,10 @@ Total findings: 11
   MEDIUM   3
   LOW      1
 ```
+
+## Scope and limitations
+
+Rules are local heuristics applied to supplied records. MFA fields do not establish effective Conditional Access enforcement; naming conventions, group membership and license findings require tenant-specific interpretation. This is not a compliance certification or a substitute for Microsoft Entra administration tools.
 
 ## Rules Reference
 
